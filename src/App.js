@@ -76,7 +76,10 @@ const characters = [
   },   
 ];
 
-
+let theCharacter;
+const randomizer = () => {
+theCharacter = characters[Math.floor(Math.random()*characters.length)]
+}
 
 const App = () => <List characters={characters} />;
 
