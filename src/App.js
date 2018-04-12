@@ -76,6 +76,8 @@ const characters = [
   },   
 ];
 
+
+
 const App = () => <List characters={characters} />;
 
 export default App;

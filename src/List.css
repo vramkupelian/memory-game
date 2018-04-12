@@ -1,0 +1,11 @@
+.character-img{
+    display: block;
+    height: 150px;
+    margin: 10px auto;
+}
+
+.list-group{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
