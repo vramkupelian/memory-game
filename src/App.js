@@ -1,5 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
 import List from "./components/List";
+import './List.css';
 
 const characters = [
   {
@@ -83,7 +84,45 @@ function shuffle(a) {
   }
   return a;
 }
-shuffle(characters);
-const App = () => <List characters={characters} />;
 
+shuffle(characters);
+
+class App extends Component {
+
+
+  
+  state = {
+    beenPicked:false
+  }
+
+  becomePicked = () =>{
+    this.setState({
+        beenPicked: true,
+    })
+}
+
+  render() {
+    
+    return (
+
+      <div className = 'list-group'>
+        {characters.map(item => {
+          
+          return(
+            <List
+              key={item.id}
+              beenPicked = {this.beenPicked}
+              image={item.image}
+            />
+          )
+
+        })}
+      </div>
+
+    );
+  }
+}
+
+  // <List characters={characters} />;
 export default App;
+
