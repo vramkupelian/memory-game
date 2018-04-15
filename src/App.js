@@ -77,41 +77,32 @@ const characters = [
   },   
 ];
 
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-shuffle(characters);
 
 class App extends Component {
-
-
-  
   state = {
-    beenPicked:false
+    characters
   }
 
-  becomePicked = () =>{
-    this.setState({
-        beenPicked: true,
-    })
-}
-
+  shuffle = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    this.setState({ characters: a });
+  }
+  
   render() {
     
     return (
 
       <div className = 'list-group'>
-        {characters.map(item => {
+        {this.state.characters.map(item => {
           
           return(
             <List
               key={item.id}
-              beenPicked = {this.beenPicked}
+              shuffle = {this.shuffle}
+              characters={this.state.characters}
               image={item.image}
             />
           )
