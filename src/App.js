@@ -82,16 +82,31 @@ class App extends Component {
   state = {
     characters,
     counter:0,
+    guesses:[],
   }
   
-  shuffle = (a) => {
-    for (let i = a.length - 1; i > 0; i--) {
+  storeGuess = id =>{
+    if(!this.state.guesses.includes(id)){
+      this.state.guesses.push(id);
+    }
+    if(this.state.counter===this.state.characters.length){
+      this.setState({
+        counter:0,
+        guesses:[],
+        message: "Winner!",
+      })
+    }
+  }
+
+  shufflePlusOne = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+        [array[i], array[j]] = [array[j], array[i]];
     }
     this.setState({ 
-      characters: a,
+      characters: array,
       counter:this.state.counter + 1,
+
     });
   }
   
@@ -99,17 +114,22 @@ class App extends Component {
     this.setState({counter:0})
   }
 
-
   render() { 
     return (
       <div className ="main-div">
-      <div className ="counter"> Score: {this.state.counter}</div>
+      <span className ="title">Memory Game </span> 
+      <br></br>
+      <span className = 'instructions'>Instructions: Do not click the same picture twice!</span>
+      <br></br>
+      <span className ="score-counter"> Score: {this.state.counter}</span>
       <div className = 'list-group'>
         {this.state.characters.map(item => {         
           return(
             <List
               key={item.id}
-              shuffle = {this.shuffle}
+              id={item.id}
+              shufflePlusOne = {this.shufflePlusOne}
+              storeGuess={this.storeGuess}
               handleLoss={this.handleLoss}
               characters={this.state.characters}
               image={item.image}

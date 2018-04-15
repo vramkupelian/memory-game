@@ -7,7 +7,7 @@ class List extends Component {
   }
 
   becomePicked = () =>{
-    this.props.shuffle(this.props.characters);
+    this.props.shufflePlusOne(this.props.characters);
     if(!this.state.beenPicked){
       this.setState({
         beenPicked: true,  
@@ -16,7 +16,9 @@ class List extends Component {
     else {
       alert("You Lost!"),
       this.props.handleLoss();
-    } 
+      // this.setState({beenPicked:false});
+      // document.location.reload();
+    }   
   }
 
   render(){
@@ -26,7 +28,8 @@ class List extends Component {
         className='character-img' 
         onClick ={this.becomePicked} 
         alt={this.props.name} 
-        src={this.props.image} 
+        src={this.props.image}
+        id={this.props.id}
       />
     </div>
     );    
