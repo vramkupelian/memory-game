@@ -95,6 +95,11 @@ class App extends Component {
     });
   }
   
+  handleLoss = () =>{
+    this.setState({counter:0})
+  }
+
+
   render() { 
     return (
       <div className ="main-div">
@@ -105,6 +110,7 @@ class App extends Component {
             <List
               key={item.id}
               shuffle = {this.shuffle}
+              handleLoss={this.handleLoss}
               characters={this.state.characters}
               image={item.image}
             />
