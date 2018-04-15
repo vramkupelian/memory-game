@@ -80,24 +80,27 @@ const characters = [
 
 class App extends Component {
   state = {
-    characters
+    characters,
+    counter:0,
   }
-
+  
   shuffle = (a) => {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
     }
-    this.setState({ characters: a });
+    this.setState({ 
+      characters: a,
+      counter:this.state.counter + 1,
+    });
   }
   
-  render() {
-    
+  render() { 
     return (
-
+      <div className ="main-div">
+      <div className ="counter"> Score: {this.state.counter}</div>
       <div className = 'list-group'>
-        {this.state.characters.map(item => {
-          
+        {this.state.characters.map(item => {         
           return(
             <List
               key={item.id}
@@ -106,14 +109,11 @@ class App extends Component {
               image={item.image}
             />
           )
-
         })}
       </div>
-
-    );
+      </div>
+     );
   }
 }
-
-  // <List characters={characters} />;
 export default App;
 

@@ -3,7 +3,8 @@ import "../List.css";
 
 class List extends Component {
   state = {
-    beenPicked:false
+    beenPicked:false,
+    // counter = 0,
   }
 
   becomePicked = () =>{
@@ -11,9 +12,10 @@ class List extends Component {
     if(!this.state.beenPicked){
       this.setState({
         beenPicked: true,
+        // counter: this.state.counter + 1,
       })
     } else {
-      console.log('Bad')
+      alert("You Lost!")
     }
 
   }
@@ -27,9 +29,6 @@ class List extends Component {
         alt={this.props.name} 
         src={this.props.image} 
       />
-
-      {/* onClick ={()=>props.beenPicked(props.id)} */}
-    {/* <span onClick ={()=>props.removeFriend(props.id)} className="remove">𝘅</span> */}
     </div>
     );
      
